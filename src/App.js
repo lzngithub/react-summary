@@ -3,18 +3,18 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
-import routes from '@/routes'
 import { ReducerProvider } from '@/hooks/reducerContext'
 import './App.less';
-
+import {Navigate} from '@/pages/navigate'
+import {Home} from '@/pages/home'
 
 function App() {
   return (
     <ReducerProvider>
       <Router>
         <Switch>
-          {routes.map(route => 
-            <Route key={route} exact={true} path={route.path} component={route.component} />)}
+          <Route exact={true} path='/' component={Navigate}></Route>
+          <Route path='*' component={Home}></Route>
         </Switch>
       </Router>
     </ReducerProvider>
