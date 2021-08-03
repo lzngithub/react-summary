@@ -1,19 +1,17 @@
-import { useEffect, useState, useRef } from 'react'
+import { useRef } from 'react'
 import styled from '@emotion/styled'
-import {css, cx} from '@emotion/css'
 import { Button } from 'antd'
 import { useHistory, Switch, Route  } from 'react-router-dom'
 
-import { useReducerContext } from '@/hooks/reducerContext'
 import { describe } from './data'
 
 import { General } from '@/pages/general'
 import { CustomRouter } from '@/pages/customRouter'
+import CustomContext from '@/pages/customContext'
 
 
 export const Home = () => {
   const path = useRef(null)
-  const { dispatch, color } = useReducerContext()
   const history  = useHistory()
   path.current = history.location.pathname.split('/')[1]
   console.log(path.current)
@@ -26,6 +24,7 @@ export const Home = () => {
     <Switch>
       <Route exact={true} path='/general' component={General}></Route>
       <Route exact={true} path='/router' component={CustomRouter}></Route>
+      <Route exact={true} path='/context' component={CustomContext}></Route>
       <Route path='*' component={NullContent}></Route>
     </Switch>
   </Container>
